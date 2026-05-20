@@ -1,10 +1,11 @@
-/* Custom Design Token Definitions */
+/* Custom Design Token Architecture */
 :root {
-    --bg-dark: #07090e;
-    --bg-card: #111520;
+    --bg-dark: #04060a;
+    --bg-card: rgba(13, 18, 30, 0.75);
     --gold-primary: #dfb76c;
     --gold-light: #f3dfb6;
-    --gold-gradient: linear-gradient(135deg, #dfb76c 0%, #b88d3a 100%);
+    --gold-dim: rgba(223, 183, 108, 0.08);
+    --gold-gradient: linear-gradient(135deg, #dfb76c 0%, #a47c32 100%);
     --font-primary: 'Plus Jakarta Sans', sans-serif;
     --font-display: 'Cinzel', serif;
 }
@@ -14,160 +15,251 @@ body {
     font-family: var(--font-primary);
     color: #e2e8f0;
     overflow-x: hidden;
+    position: relative;
 }
 
-/* Typography Overrides */
+/* --- High Level Senior UI: Happening/Dynamic Animated Ambient Background --- */
+.gradient-bg-container {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.7;
+}
+
+.g-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    mix-blend-mode: screen;
+}
+
+.orb-1 {
+    top: -10%; left: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, rgba(21, 38, 77, 0.6) 0%, rgba(0,0,0,0) 70%);
+    animation: floatingOrb 25s infinite alternate ease-in-out;
+}
+
+.orb-2 {
+    bottom: -15%; right: -5%;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(164, 124, 50, 0.15) 0%, rgba(0,0,0,0) 70%);
+    animation: floatingOrb 20s infinite alternate-reverse ease-in-out 2s;
+}
+
+.orb-3 {
+    top: 30%; right: 25%;
+    width: 45vw; height: 45vw;
+    background: radial-gradient(circle, rgba(31, 23, 54, 0.5) 0%, rgba(0,0,0,0) 70%);
+    animation: floatingOrb 30s infinite alternate ease-in-out 1s;
+}
+
+@keyframes floatingOrb {
+    0% { transform: translate(0px, 0px) scale(1); }
+    50% { transform: translate(40px, -60px) scale(1.1); }
+    100% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+/* Typography Overrides & Neon Accents */
 .main-title {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: 2px;
-    background: linear-gradient(to right, #fff 30%, var(--gold-light) 100%);
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ffffff 20%, var(--gold-light) 60%, var(--gold-primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 50px rgba(223, 183, 108, 0.1);
 }
 
-.title-font {
-    font-family: var(--font-display);
-}
-
+.title-font { font-family: var(--font-display); }
 .text-gold { color: var(--gold-primary); }
 .text-gold-light { color: var(--gold-light); }
-.tracking-widest { letter-spacing: 4px; }
-.text-xxs { font-size: 0.75rem; }
+.tracking-widest { letter-spacing: 5px; }
+.tracking-wide { letter-spacing: 1.5px; }
+.text-xxs { font-size: 0.72rem; }
+.text-light-muted { color: #cbd5e1; }
+.bg-dark-black { background-color: #0b0d13; }
 
-/* Background Overlays & Decorative Elements */
-.hero-section {
-    background: radial-gradient(circle at 20% 30%, #151c30 0%, var(--bg-dark) 70%);
-}
-
+/* Interactive Utilities */
 .gold-gradient-overlay-top {
     position: absolute;
-    top: 0; right: 0; left: 0;
-    height: 6px;
+    top: 0; right: 0; left: 0; height: 5px;
     background: var(--gold-gradient);
+    z-index: 10;
 }
 
-/* Glassmorphism & UI Components */
+/* Glassmorphic Components */
 .bg-blur {
-    background: rgba(17, 21, 32, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.bg-gold-gradient {
-    background: var(--gold-gradient);
-}
-
-.bg-gold-dim {
-    background: rgba(223, 183, 108, 0.1);
-    border: 1px solid rgba(223, 183, 108, 0.2);
+    background: rgba(13, 20, 35, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 .border-left-gold {
-    border-left: 3px solid var(--gold-primary) !important;
+    border-left: 4px solid var(--gold-primary) !important;
 }
 
-/* Mentor Section Styling */
+/* Mentor Section Framework */
 .mentor-card {
     border: 1px solid rgba(223, 183, 108, 0.15);
-    background: linear-gradient(145deg, rgba(17, 21, 32, 0.9) 0%, rgba(7, 9, 14, 0.9) 100%);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(6, 10, 18, 0.9) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .mentor-placeholder-avatar {
-    width: 250px;
-    height: 250px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
-    background: #1a233a url('../assets/panditji.webp') center/cover no-repeat;
-    border: 2px solid var(--gold-primary);
-    box-shadow: 0 0 15px rgba(223, 183, 108, 0.3);
+    background: #111726 url('../assets/panditji.webp') center/cover no-repeat;
+    border: 3px solid var(--gold-primary);
+    box-shadow: 0 0 30px rgba(223, 183, 108, 0.25);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Sticky Input & Glass Form Design */
+.mentor-card:hover .mentor-placeholder-avatar {
+    transform: scale(1.06) rotate(2deg);
+}
+
+/* Advanced High-Conversion Form Engineering */
 .glass-form-card {
-    background: rgba(17, 21, 32, 0.85);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5) !important;
+    background: rgba(10, 15, 28, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6) !important;
+}
+
+.glass-form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(225deg, rgba(223, 183, 108, 0.05) 0%, rgba(0,0,0,0) 50%);
+    pointer-events: none;
 }
 
 .price-tag {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px dashed rgba(223, 183, 108, 0.4);
+    background: rgba(4, 6, 10, 0.6);
+    border: 1px solid rgba(223, 183, 108, 0.25);
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.4);
+}
+
+/* Beautiful Input Fields Container Integration */
+.input-group-text {
+    background-color: rgba(5, 8, 15, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-right: none;
+    color: var(--gold-primary);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .form-control, .form-select {
-    background-color: rgba(7, 9, 14, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #fff;
-    /* padding: 0.75rem 1rem; */
-    border-radius: 8px;
+    background-color: rgba(5, 8, 15, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff !important;
+    padding: 0.72rem 1rem;
+    border-radius: 10px;
+}
+
+.input-group > .form-control, .input-group > .form-select {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .form-control:focus, .form-select:focus {
-    background-color: rgba(7, 9, 14, 0.8);
+    background-color: rgba(4, 6, 10, 0.9);
     border-color: var(--gold-primary);
-    box-shadow: 0 0 0 0.25rem rgba(223, 183, 108, 0.15);
-    color: #fff;
+    box-shadow: 0 0 20px rgba(223, 183, 108, 0.15);
 }
 
-/* Custom Highlights Layout */
-.gold-divider {
-    width: 60px;
-    height: 3px;
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.9rem;
+}
+
+/* High Contrast Form Validation Feedback colors */
+.was-validated .form-control:valid, .was-validated .form-select:valid {
+    border-color: #198754;
+    background-image: none;
+}
+
+/* The Call to Action Dynamic Glow Emitter Button */
+.btn-gold-gradient {
     background: var(--gold-gradient);
-    border-radius: 2px;
+    color: #04060a !important;
+    border-radius: 12px;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 30px rgba(223, 183, 108, 0.25) !important;
+}
+
+.btn-gold-gradient:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #f3dfb6 0%, #dfb76c 100%);
+    box-shadow: 0 12px 35px rgba(223, 183, 108, 0.45) !important;
+}
+
+/* Curriculum Cards UI Architecture */
+.gold-divider {
+    width: 80px; height: 3px;
+    background: var(--gold-gradient);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(223, 183, 108, 0.4);
 }
 
 .day-card {
     background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
 }
 
 .day-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(223, 183, 108, 0.2);
-    box-shadow: 0 20px 40px rgba(223, 183, 108, 0.05);
+    transform: translateY(-8px);
+    border-color: rgba(223, 183, 108, 0.25);
+    box-shadow: 0 25px 50px rgba(164, 124, 50, 0.08);
 }
 
 .custom-list li {
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
     display: flex;
     align-items: flex-start;
 }
 
-.text-light-muted {
-    color: #cbd5e1;
+.custom-list li span {
+    line-height: 1.5;
 }
-
-/* Global Interactive States */
-/* .btn-gold-gradient {
-    color: #07090e;
-    border: none;
-} */
-.btn-gold-gradient {
-    background: linear-gradient(135deg, #f3dfb6 0%, #dfb76c 100%);
-    color: #07090e;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(223, 183, 108, 0.3) !important;
+.bg-gold-gradient {
+    background: linear-gradient(135deg, #dfb76c 0%, #b88d3a 100%);
+}
+/* Layout Utilities & Micro-Interactions */
+.card-hover-effect:hover {
+    background: rgba(13, 20, 35, 0.8);
+    transform: scale(1.02);
 }
 
 .transition-all {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-glow {
+    text-shadow: 0 0 20px rgba(223, 183, 108, 0.4);
 }
 
 .hover-glow:hover {
-    text-shadow: 0 0 8px rgba(223, 183, 108, 0.6);
+    color: var(--gold-light) !important;
+    text-shadow: 0 0 12px rgba(223, 183, 108, 0.6);
 }
 
-/* Responsiveness tweaks */
+/* Clean Responsive Adaptive Engineering */
 @media (max-width: 991.98px) {
-    .hero-section {
-        padding-top: 2rem;
-    }
+    .hero-section { padding-top: 1rem; }
     .mentor-placeholder-avatar {
-    width: 300px;
-    height: 300px;
-}
+        width: 120px;
+        height: 120px;
+    }
+    .main-title { font-size: calc(1.625rem + 4.5vw); }
 }
