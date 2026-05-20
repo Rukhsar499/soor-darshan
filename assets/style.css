@@ -1,0 +1,169 @@
+/* Custom Design Token Definitions */
+:root {
+    --bg-dark: #07090e;
+    --bg-card: #111520;
+    --gold-primary: #dfb76c;
+    --gold-light: #f3dfb6;
+    --gold-gradient: linear-gradient(135deg, #dfb76c 0%, #b88d3a 100%);
+    --font-primary: 'Plus Jakarta Sans', sans-serif;
+    --font-display: 'Cinzel', serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: var(--font-primary);
+    color: #e2e8f0;
+    overflow-x: hidden;
+}
+
+/* Typography Overrides */
+.main-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #fff 30%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title-font {
+    font-family: var(--font-display);
+}
+
+.text-gold { color: var(--gold-primary); }
+.text-gold-light { color: var(--gold-light); }
+.tracking-widest { letter-spacing: 4px; }
+.text-xxs { font-size: 0.75rem; }
+
+/* Background Overlays & Decorative Elements */
+.hero-section {
+    background: radial-gradient(circle at 20% 30%, #151c30 0%, var(--bg-dark) 70%);
+}
+
+.gold-gradient-overlay-top {
+    position: absolute;
+    top: 0; right: 0; left: 0;
+    height: 6px;
+    background: var(--gold-gradient);
+}
+
+/* Glassmorphism & UI Components */
+.bg-blur {
+    background: rgba(17, 21, 32, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bg-gold-gradient {
+    background: var(--gold-gradient);
+}
+
+.bg-gold-dim {
+    background: rgba(223, 183, 108, 0.1);
+    border: 1px solid rgba(223, 183, 108, 0.2);
+}
+
+.border-left-gold {
+    border-left: 3px solid var(--gold-primary) !important;
+}
+
+/* Mentor Section Styling */
+.mentor-card {
+    border: 1px solid rgba(223, 183, 108, 0.15);
+    background: linear-gradient(145deg, rgba(17, 21, 32, 0.9) 0%, rgba(7, 9, 14, 0.9) 100%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.mentor-placeholder-avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #1a233a url('../assets/panditji.webp') center/cover no-repeat;
+    border: 2px solid var(--gold-primary);
+    box-shadow: 0 0 15px rgba(223, 183, 108, 0.3);
+}
+
+/* Sticky Input & Glass Form Design */
+.glass-form-card {
+    background: rgba(17, 21, 32, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5) !important;
+}
+
+.price-tag {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px dashed rgba(223, 183, 108, 0.4);
+}
+
+.form-control, .form-select {
+    background-color: rgba(7, 9, 14, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: rgba(7, 9, 14, 0.8);
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 0 0.25rem rgba(223, 183, 108, 0.15);
+    color: #fff;
+}
+
+/* Custom Highlights Layout */
+.gold-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold-gradient);
+    border-radius: 2px;
+}
+
+.day-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.day-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(223, 183, 108, 0.2);
+    box-shadow: 0 20px 40px rgba(223, 183, 108, 0.05);
+}
+
+.custom-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+.text-light-muted {
+    color: #cbd5e1;
+}
+
+/* Global Interactive States */
+/* .btn-gold-gradient {
+    color: #07090e;
+    border: none;
+} */
+.btn-gold-gradient {
+    background: linear-gradient(135deg, #f3dfb6 0%, #dfb76c 100%);
+    color: #07090e;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(223, 183, 108, 0.3) !important;
+}
+
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+.hover-glow:hover {
+    text-shadow: 0 0 8px rgba(223, 183, 108, 0.6);
+}
+
+/* Responsiveness tweaks */
+@media (max-width: 991.98px) {
+    .hero-section {
+        padding-top: 2rem;
+    }
+}
