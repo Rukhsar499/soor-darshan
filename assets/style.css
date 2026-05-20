@@ -166,4 +166,8 @@ body {
     .hero-section {
         padding-top: 2rem;
     }
+    .mentor-placeholder-avatar {
+    width: 300px;
+    height: 300px;
+}
 }
