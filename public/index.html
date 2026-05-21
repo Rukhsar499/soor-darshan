@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soor O Darshan - A Musical Workshop by Pt. Ajoy Chakrabarty</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom Design Token Architecture - Light Pastel & Musical Theme */
+        :root {
+            --bg-light: #f7fafc;
+            --bg-card: rgba(255, 255, 255, 0.75);
+            --musical-primary: #7c5dfa;
+            --musical-secondary: #ff7a00;
+            --gold-accent: #b58925;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --pastel-gradient: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 50%, #fef3c7 100%);
+            --btn-gradient: linear-gradient(135deg, #7c5dfa 0%, #5b36f5 100%);
+            --font-primary: 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'Cinzel', serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            font-family: var(--font-primary);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Pastel Background Layer */
+        .gradient-bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            background: var(--pastel-gradient);
+            overflow: hidden;
+        }
+
+        .g-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.6;
+        }
+
+        .orb-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, #bae6fd 0%, rgba(255, 255, 255, 0) 70%);
+            animation: floatingOrb 25s infinite alternate ease-in-out;
+        }
+
+        .orb-2 {
+            bottom: -10%;
+            right: -5%;
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, #fed7aa 0%, rgba(255, 255, 255, 0) 70%);
+            animation: floatingOrb 20s infinite alternate-reverse ease-in-out 2s;
+        }
+
+        @keyframes floatingOrb {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, -50px) scale(1.05);
+            }
+
+            100% {
+                transform: translate(-15px, 15px) scale(0.95);
+            }
+        }
+
+        /* Floating Musical Vector Elements */
+        .music-decorations {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .musical-element {
+            position: absolute;
+            color: var(--musical-primary);
+            opacity: 0.15;
+            font-size: 2.5rem;
+            animation: floatMusic 18s infinite linear;
+        }
+
+        .music-1 {
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .music-2 {
+            top: 45%;
+            left: 45%;
+            font-size: 3.5rem;
+            opacity: 0.08;
+            animation-duration: 25s;
+        }
+
+        .music-3 {
+            top: 75%;
+            left: 12%;
+            animation-delay: -5s;
+        }
+
+        .music-4 {
+            top: 25%;
+            right: 45%;
+            animation-duration: 22s;
+        }
+
+        .music-5 {
+            top: 60%;
+            right: 8%;
+            animation-delay: -3s;
+        }
+
+        @keyframes floatMusic {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+
+            50% {
+                transform: translateY(-25px) rotate(15deg) scale(1.1);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+        }
+
+        /* Typography */
+        .main-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #0f172a;
+            text-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        }
+
+        .title-font {
+            font-family: var(--font-display);
+        }
+
+        .text-musical {
+            color: var(--musical-primary);
+        }
+
+        .tracking-widest {
+            letter-spacing: 4px;
+        }
+
+        .tracking-wide {
+            letter-spacing: 1px;
+        }
+
+        .text-xxs {
+            font-size: 0.72rem;
+        }
+
+        /* Premium Light Glassmorphism Architecture */
+        .bg-blur {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .border-left-musical {
+            border-left: 4px solid var(--musical-primary) !important;
+        }
+
+        /* Mentor Profile Configuration */
+        .mentor-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(124, 93, 250, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04);
+        }
+
+        .mentor-placeholder-avatar {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background: url(./assets/panditji.webp) center/cover no-repeat;
+            border: 3px solid white;
+            box-shadow: 0 10px 25px rgba(124, 93, 250, 0.2);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .mentor-card:hover .mentor-placeholder-avatar {
+            transform: scale(1.05);
+        }
+
+        /* High-Conversion Interactive Booking Card */
+        .glass-form-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.7) !important;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08) !important;
+        }
+
+        .price-tag {
+            background: rgba(124, 93, 250, 0.06);
+            border: 1px solid rgba(124, 93, 250, 0.15);
+        }
+
+        /* Input Customizations */
+        .input-group-text {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-right: none;
+            color: var(--musical-primary);
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .form-control,
+        .form-select {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #e2e8f0;
+            color: var(--text-dark) !important;
+            /* padding: 0.72rem 1rem; */
+            border-radius: 10px;
+        }
+
+        .input-group>.form-control,
+        .input-group>.form-select {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background-color: #fff;
+            border-color: var(--musical-primary);
+            box-shadow: 0 0 15px rgba(124, 93, 250, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Call To Action Emitter Button */
+        .btn-musical {
+            background: var(--btn-gradient);
+            color: #ffffff !important;
+            border-radius: 12px;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(124, 93, 250, 0.3) !important;
+        }
+
+        .btn-musical:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(124, 93, 250, 0.45) !important;
+            opacity: 0.95;
+        }
+
+        /* Highlights Architecture */
+        .musical-divider {
+            width: 80px;
+            height: 4px;
+            background: var(--btn-gradient);
+            border-radius: 10px;
+        }
+
+        .day-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.03);
+        }
+
+        .day-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(124, 93, 250, 0.2);
+            box-shadow: 0 20px 40px rgba(124, 93, 250, 0.06);
+        }
+
+        .custom-list li {
+            margin-bottom: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .card-hover-effect:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.02);
+        }
+
+        .transition-all {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .badge-primary-dim {
+            background-color: rgba(124, 93, 250, 0.1);
+            color: var(--musical-primary);
+        }
+
+        @media (max-width: 991.98px) {
+            .hero-section {
+                padding-top: 1rem;
+            }
+
+            .mentor-placeholder-avatar {
+                width: 200px;
+                height: 200px;
+            }
+
+            .main-title {
+                font-size: calc(1.6rem + 4vw);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="gradient-bg-container">
+        <div class="g-orb orb-1"></div>
+        <div class="g-orb orb-2"></div>
+    </div>
+
+    <div class="music-decorations">
+        <i class="bi bi-music-note-beamed musical-element music-1"></i>
+        <i class="bi bi-music-player musical-element music-2"></i>
+        <i class="bi bi-music-note musical-element music-3"></i>
+        <i class="bi bi-mic musical-element music-4"></i>
+        <i class="bi bi-earbuds musical-element music-5"></i>
+    </div>
+
+    <header class="hero-section position-relative overflow-hidden">
+        <div class="container position-relative z-2 py-5">
+            <div class="row align-items-center min-vh-100 g-5">
+
+                <div class="col-lg-7 text-center text-lg-start" data-aos="fade-right" data-aos-duration="1200">
+                    <p class="text-uppercase badge badge-primary-dim mb-2 fw-bold px-3 py-2">A Musical Workshop</p>
+                    <h1 class="display-3 main-title mb-4">SOOR O DARSHAN</h1>
+
+                    <div
+                        class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 mb-4 partners-tags">
+                        <span class="badge bg-blur px-3 py-2 text-dark border border-white">Presented by <strong
+                                class="text-musical"><img src="assets/psm.webp" alt="psm" width="100px"></strong></span>
+                        <span class="badge bg-blur px-3 py-2 text-dark border border-white">Education Partner <strong
+                                class="text-musical"><img src="assets/narayana.webp" alt="Narayana Group of Schools"
+                                    width="150px"></strong></span>
+                    </div>
+
+                    <div class="mentor-card p-4 rounded-4 mb-4 d-flex flex-column flex-sm-row align-items-center gap-4">
+                        <div class="mentor-img-wrapper">
+                            <div class="mentor-placeholder-avatar"></div>
+                        </div>
+                        <div class="text-center text-sm-start">
+                            <span class="badge badge-primary-dim mb-2 fw-bold px-3">WORKSHOP CONDUCTED BY</span>
+                            <h2 class=" text-dark mb-1 tracking-wide fw-light padma">Padma Bhushan</h2>
+                            <h3 class="text-musical title-font m-0 fw-bold pandit">Pandit Ajoy Chakrabarty</h3>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 schedule-grid">
+                        <div class="col-sm-6">
+                            <div class="p-3 rounded-3 bg-blur border-left-musical transition-all card-hover-effect">
+                                <p class="small mb-1 text-musical fw-semibold tracking-wider"><i
+                                        class="bi bi-calendar3 me-2"></i>DATE</p>
+                                <p class="text-dark fw-bold m-0">22nd & 23rd June 2026</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 rounded-3 bg-blur border-left-musical transition-all card-hover-effect">
+                                <p class="small mb-1 text-musical fw-semibold tracking-wider"><i
+                                        class="bi bi-clock me-2"></i>TIMING</p>
+                                <p class="text-dark fw-bold m-0">11:00 AM to 4:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="p-3 rounded-3 bg-blur border-left-musical transition-all card-hover-effect">
+                                <p class="small mb-1 text-musical fw-semibold tracking-wider"><i
+                                        class="bi bi-geo-alt me-2"></i>VENUE</p>
+                                <p class="text-dark fw-bold m-0">Biswa Bangla Convention Centre</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="glass-form-card p-4 rounded-4 position-relative overflow-hidden">
+                        <div class="text-center mb-4">
+                            <h3 class="text-dark fw-bold mb-1">Book Your Seat</h3>
+                            <div class="price-tag d-inline-block px-4 py-2 rounded-pill mt-2">
+                                <span class="text-muted text-decoration-line-through me-2 small">₹4,000</span>
+                                <span class="text-musical fw-bold fs-4">₹2,500/-</span>
+                                <span class="d-block text-xxs text-muted mt-1 fw-medium">*Early Booking Live
+                                    Offer</span>
+                            </div>
+                        </div>
+
+                        <form id="registrationForm" action="/pay" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label text-dark small fw-medium">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-dark small fw-medium">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" class="form-control" placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7 mb-3">
+                                    <label class="form-label text-dark small fw-medium">Contact Number</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                        <input type="tel" name="phone" class="form-control" placeholder="98362 XXXXX" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 mb-3">
+                                    <label class="form-label text-dark small fw-medium">Age</label>
+                                    <input type="number" name="age" class="form-control px-3" placeholder="24" min="5" max="100"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label text-dark small fw-medium">City</label>
+                                    <input type="text" name="city" class="form-control px-3" placeholder="Kolkata" required>
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label text-dark small fw-medium">Profession</label>
+                                    <input type="text" name="profession" class="form-control px-3" placeholder="Musician/Student"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label text-dark small fw-medium">Meal Preference</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-egg-fried"></i></span>
+                                    <select class="form-select" name="meal_preference" required>
+                                        <option value="" selected disabled>Select your meal option</option>
+                                        <option value="veg">Vegetarian (Veg)</option>
+                                        <option value="nonveg">Non-Vegetarian (Non Veg)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="btn btn-musical w-100 py-3 fw-bold border-0 position-relative overflow-hidden">
+                                REGISTER & PAY NOW <i class="bi bi-arrow-right-circle-fill ms-2"></i>
+                            </button>
+
+                            <div class="mt-3 text-center">
+                                <div class="form-check d-inline-flex justify-content-center">
+                                    <input class="form-check-input me-2" type="checkbox" name="accommodation" id="accommodation">
+
+                                    <label class="form-check-label text-muted" for="accommodation"
+                                        style="font-size:13px;">
+
+                                        Accommodation Required? Add-on option available via payment portal (+ ₹1,500).
+
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <section class="highlights-section py-5 position-relative z-2">
+        <div class="container py-4">
+            <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="1000">
+                <span class="text-musical uppercase-tracking small fw-bold tracking-widest">CURRICULUM BREAKDOWN</span>
+                <h2 class="display-5 text-dark title-font mt-2">Highlights of the Workshop</h2>
+                <div class="musical-divider mx-auto mt-3"></div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6" data-aos="fade-up-right" data-aos-duration="1000">
+                    <div class="day-card h-100 p-4 p-xl-5 rounded-4 transition-all position-relative overflow-hidden">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="h4 text-musical m-0 fw-bold title-font">Day 01</h3>
+                            <span class="badge badge-primary-dim py-2 px-3 rounded-pill fw-semibold">Foundation &
+                                Excellence</span>
+                        </div>
+                        <ul class="list-unstyled custom-list text-muted m-0">
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>Master Soor, Taal &
+                                    Riyaz</span></li>
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>Learn voice culture
+                                    & breathing techniques</span></li>
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>Understand raaga
+                                    expression</span></li>
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>Develop vocal
+                                    performance skills</span></li>
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>An engaging
+                                    interactive Q & A session</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6" data-aos="fade-up-left" data-aos-duration="1000">
+                    <div class="day-card h-100 p-4 p-xl-5 rounded-4 transition-all position-relative overflow-hidden">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="h4 text-musical m-0 fw-bold title-font">Day 02</h3>
+                            <span class="badge badge-primary-dim py-2 px-3 rounded-pill fw-semibold">Practical &
+                                Expression</span>
+                        </div>
+                        <ul class="list-unstyled custom-list text-muted m-0">
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>Enhance
+                                    improvisation & voice techniques</span></li>
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>Explore
+                                    semi-classical styles</span></li>
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>Participate in live
+                                    performances</span></li>
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>Receive expert
+                                    feedback from Panditji</span></li>
+                            <li><i class="bi bi-check2-circle text-musical me-3 mt-1 fs-5"></i><span>Experience
+                                    interactive learning sessions</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-top border-secondary border-opacity-10 py-4 position-relative z-2">
+        <div
+            class="container text-center text-md-between d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+            <p class="text-muted m-0 small">This workshop is open to students, teachers, and all music enthusiasts.</p>
+            <div class="d-flex align-items-center gap-2">
+                <span class="text-muted small">For Queries, Contact:</span>
+                <a href="tel:9836224116"
+                    class="text-musical fw-bold text-decoration-none fs-5 transition-all d-inline-flex align-items-center">
+                    <i class="bi bi-telephone-fill me-2 fs-6"></i>98362 24116
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            mirror: false
+        });
+
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+
+</html>
